@@ -1,0 +1,10 @@
+<%= render partial: 'admin/shared/survey_builder_header', locals: {survey: @survey} %>
+<%= render partial: 'admin/shared/survey_details', locals: {survey: @survey} %>
+<h3>Add a Multiple Choice Question</h3>
+<%= render partial: 'question_step', locals: { step: @question.current_step} %>
+<%= form_for [:admin, @survey, @question], html: {class: 'mts'}  do |f| %>
+  <%= render partial: "#{@question.current_step}", locals: {f: f, question: @question} %>
+  <%= f.submit "Continue to Next Step", class: 'btn btn-default' if @question.first_step? %>
+  <%= f.submit "Submit", class: 'btn btn-default' if @question.last_step? %>
+  <%= f.submit "Back", name: 'back', class: 'btn btn-default'  if @question.last_step? %>
+<% end %>

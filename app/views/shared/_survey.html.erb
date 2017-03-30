@@ -1,0 +1,8 @@
+<li class="item">
+  <%= survey.title %>
+  <div class="list-inner">
+    <p><%= survey.description %></p>
+    <%= link_to "Take Survey", [:admin, survey], class: 'btn btn-default' %>
+    <%= link_to "View Results", '#', class: 'btn btn-default' %>
+  </div>
+</li>

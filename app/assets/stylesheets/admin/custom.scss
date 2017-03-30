@@ -1,0 +1,36 @@
+.container {
+  max-width: 800px;
+}
+.builder-title {
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  padding-bottom: .2em;
+}
+.home-header {
+  margin-bottom: 2em;
+}
+.survey-builder-steps {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2em;
+
+  div:first-child {
+    border-right: 1px solid #e5e5e5;
+  }
+}
+.question-list, .survey-list {
+  .item {
+    margin-bottom: 1.2em;
+    font-weight: bold;
+  }
+  .list-inner {
+    font-weight: normal;
+  }
+}
+.text-light {
+  color: #e5e5e5;
+  font-weight: normal;
+}
+.mts {
+  margin-top: 1.2em;
+}

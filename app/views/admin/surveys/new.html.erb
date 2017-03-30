@@ -1,0 +1,15 @@
+<%= render partial: 'admin/shared/survey_builder_header', locals: {survey: @survey } %>
+<p>First, choose a title and a description from your survey.</p>
+<%= form_for [:admin, @survey] do |f| %>
+  <div class="form-group <%= form_error_class(@survey, :title)%>">
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: 'e.g. "The Personality Test"', class: 'form-control' %>
+    <%= form_error(@survey, :title) %>
+  </div>
+  <div class="form-group <%= form_error_class(@survey, :description) %>">
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: 'e.g. "Discovering what is unique and special about all you crazy people"', class: 'form-control' %>
+    <%= form_error(@survey, :description) %>
+  </div>
+  <%= f.submit class: 'btn btn-default btn-block'  %>
+<% end %>

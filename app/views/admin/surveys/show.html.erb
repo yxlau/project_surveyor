@@ -1,0 +1,15 @@
+<%= render partial: 'admin/shared/survey_builder_header', locals: {survey: @survey } %>
+<%= render partial: 'admin/shared/survey_details', locals: {survey: @survey} %>
+<h3 class="h4">Add A Question:</h3>
+<p>Choose which type of question to add.</p>
+<%= form_tag [:questiontype, :admin, @survey] do %>
+  <div class="form-group">
+    <%= select_tag "qtype", options_for_select({"Multiple Choice Question": "Option", "Number Range": "num"}, "Option"), class: 'form-control' %>
+  </div>
+  <%= submit_tag "Add a New Question", class: 'btn btn-default' %>
+<% end %>
+<hr>
+<h2 class="h4">Existing Questions:</h2>
+<ol class="question-list">
+  <%= render partial: 'admin/questions/question', collection: @questions.includes(:options) %>
+</ol>

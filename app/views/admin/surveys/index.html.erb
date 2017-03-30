@@ -1,0 +1,10 @@
+<header class="text-center home-header">
+  <h1>Surveyor:</h1>
+  <span class="h1">Tell Me #allthethings!</span>
+</header>
+<p>Click on a survey below to take it or create one of your own!</p>
+<%= link_to "Create a New Survey", [:new, :admin, :survey], class: 'btn btn-default btn-block' %>
+<h2>Take a Survey</h2>
+<ol class="survey-list">
+  <%= render partial: 'shared/survey', collection: @surveys, as: :survey %>
+</ol>

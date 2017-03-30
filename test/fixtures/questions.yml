@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  survey: one
+  option_count: 1
+  required: false
+
+two:
+  title: MyString
+  survey: two
+  option_count: 1
+  required: false
