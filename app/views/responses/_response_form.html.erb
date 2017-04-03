@@ -1,0 +1,30 @@
+<li class="item<%= ' required'.html_safe if question.required %>"><%= question.title %>
+  <div class="list-inner">
+    <%= form_error(response, :'answers.options') %>
+    <%= f.fields_for :answers, response.answers.build do |ff| %>
+      <%= ff.hidden_field :question_id, value: question.id %>
+      <% if question.multi %>
+        <%= ff.collection_check_boxes(:option_ids, question.options, :id, :value) do |c| %>
+          <div class="checkbox <%= form_error_class(response, :'answers.options')  %>">
+            <label>
+              <%= c.check_box %>
+              <%= c.text %>
+            </label>
+          </div>
+        <% end %>
+      <% else %>
+        <%= form_error(response, :'answers.single.option') if question.required %>
+        <%= ff.fields_for :single, response.answers.build.build_single do |s| %>
+          <%= s.collection_radio_buttons(:option_id, question.options.collect, :id, :value) do |r| %>
+            <div class="radio <%= form_error_class(response, :'answers.single.option')  %>">
+              <label>
+                <%= r.radio_button %>
+                <%= r.text %>
+              </label>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</li>

@@ -1,0 +1,7 @@
+survye resuls
+
+<h2 class="h3"><%= @survey.title %></h2>
+<p><%= @survey.description %></p>
+<ol class="list">
+  <%= render partial: 'admin/shared/collated_responses',  collection: @survey.questions.includes(:selections), as: :question %>
+</ol>

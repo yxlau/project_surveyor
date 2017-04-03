@@ -5,6 +5,6 @@
 <p>Click on a survey below to take it or create one of your own!</p>
 <%= link_to "Create a New Survey", [:new, :admin, :survey], class: 'btn btn-default btn-block' %>
 <h2>Take a Survey</h2>
-<ol class="survey-list">
+<ol class="list">
   <%= render partial: 'shared/survey', collection: @surveys, as: :survey %>
 </ol>

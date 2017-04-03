@@ -10,6 +10,6 @@
 <% end %>
 <hr>
 <h2 class="h4">Existing Questions:</h2>
-<ol class="question-list">
+<ol class="list">
   <%= render partial: 'admin/questions/question', collection: @questions.includes(:options) %>
 </ol>

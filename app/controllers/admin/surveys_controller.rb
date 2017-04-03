@@ -34,6 +34,10 @@ class Admin::SurveysController < ApplicationController
     end
   end
 
+  def results
+    @survey = Survey.find(params[:id])
+  end
+
   private
 
   def survey_params

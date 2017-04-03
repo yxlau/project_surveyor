@@ -2,6 +2,8 @@ class Question < ApplicationRecord
   attr_accessor :current_step
   belongs_to :survey
   has_many :options, dependent: :destroy, inverse_of: :question
+  has_many :answers, through: :options
+  has_many :selections, through: :answers
   accepts_nested_attributes_for :options
   validates :option_count, presence: true, numericality: {only_integer: true, greater_than: 0}, if: :first_step?
   validates :multi, :required, inclusion: {in: [true, false], message: "Must select one"}, if: :first_step?

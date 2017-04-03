@@ -1,0 +1,8 @@
+<%= render partial: 'shared/survey_taker_header', locals: {survey: @survey } %>
+<span class="text-light mts"><i>Questions marked with an asterisk (*) are required</i></span>
+<%= form_for [@survey, @response], html: {class: 'mts'} do |f| %>
+  <ol class="list">
+    <%= render partial: 'response_form', collection: @survey.questions.includes(:options), as: :question, locals: {f: f, response: @response} %>
+  </ol>
+  <%= f.submit class: 'btn btn-default' %>
+<% end %>

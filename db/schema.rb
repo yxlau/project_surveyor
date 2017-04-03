@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401045227) do
+ActiveRecord::Schema.define(version: 20170402100000) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "response_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["response_id"], name: "index_answers_on_response_id"
+  end
 
   create_table "options", force: :cascade do |t|
     t.string   "value"
@@ -38,11 +47,21 @@ ActiveRecord::Schema.define(version: 20170401045227) do
     t.index ["survey_id"], name: "index_responses_on_survey_id"
   end
 
+  create_table "selections", force: :cascade do |t|
+    t.integer  "answer_id"
+    t.integer  "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_selections_on_answer_id"
+    t.index ["option_id"], name: "index_selections_on_option_id"
+  end
+
   create_table "surveys", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",                       null: false
+    t.string   "description",                 null: false
+    t.integer  "responses_count", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

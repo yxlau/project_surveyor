@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :surveys, only: [:new, :create, :index, :show] do
       post 'questiontype', on: :member
+      get 'results', on: :member
       resources :questions, only: [:new, :create, :destroy]
-      resources :response, only: [:new, :create]
     end
+  end
+  resources :surveys, only: [:show] do
+    resources :responses, only: [:new, :create]
   end
 end

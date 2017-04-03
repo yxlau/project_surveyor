@@ -30,4 +30,6 @@ end
 puts "Creating blank survey..."
 Survey.create!(title: 'A blank survey', description: 'A blank survey with a "blank" description')
 
+
+
 puts "Done!"

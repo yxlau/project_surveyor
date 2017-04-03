@@ -1,0 +1,11 @@
+<li><%= question.title %>
+  <table class="table">
+    <thead>
+      <th>Response</th>
+      <th>Count</th>
+    </thead>
+    <tbody>
+      <%= render partial: 'admin/shared/result_answer', collection: question.selections, as: :selection  %>
+    </tbody>
+  </table>
+</li>
