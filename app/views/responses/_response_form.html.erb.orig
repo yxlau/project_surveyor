@@ -1,12 +1,19 @@
 <li class="item<%= ' required'.html_safe if question.required %>"><%= question.title %>
-<<<<<<< HEAD
   <div class="list-inner">
+<<<<<<< HEAD
+    <%= form_error(response, :'answers.option_ids') if question.required %>
+=======
     <%= form_error(response, :'answers.options') if question.required %>
+>>>>>>> 36e6706... Ensure optional selections get saved
     <%= f.fields_for :answers, response.answers.build do |ff| %>
       <%= ff.hidden_field :question_id, value: question.id %>
       <% if question.multi %>
         <%= ff.collection_check_boxes(:option_ids, question.options, :id, :value) do |c| %>
+<<<<<<< HEAD
+          <div class="checkbox <%= form_error_class(response, :'answers.option_ids') if question.required %>">
+=======
           <div class="checkbox <%= form_error_class(response, :'answers.options') if question.required %>">
+>>>>>>> 36e6706... Ensure optional selections get saved
             <label>
               <%= c.check_box %>
               <%= c.text %>
@@ -14,10 +21,10 @@
           </div>
         <% end %>
       <% else %>
-        <%= form_error(response, :'answers.single.option') if question.required %>
+        <%= form_error(response, :'answers.single') if question.required %>
         <%= ff.fields_for :single, response.answers.build.build_single do |s| %>
           <%= s.collection_radio_buttons(:option_id, question.options.collect, :id, :value) do |r| %>
-            <div class="radio <%= form_error_class(response, :'answers.single.option') if question.required %>">
+            <div class="radio <%= form_error_class(response, :'answers.single') if question.required %>">
               <label>
                 <%= r.radio_button %>
                 <%= r.text %>
@@ -28,15 +35,4 @@
       <% end %>
     <% end %>
   </div>
-=======
-  <%= response.errors.full_messages %>
-  <%= f.fields_for :answers do |ff| %>
-    <%= ff.hidden_field :question_id, value: question.id %>
-    <% if question.multi %>
-      <%= ff.collection_check_boxes(:option_ids, question.options, :id, :value) %>
-    <% else %>
-      <%= ff.collection_radio_buttons(:option_ids, question.options.collect, :id, :value) %>
-    <% end %>
-  <% end %>
->>>>>>> master
 </li>

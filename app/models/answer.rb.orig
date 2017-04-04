@@ -15,6 +15,7 @@ class Answer < ApplicationRecord
 
   before_save :mark_for_destroy
 
+<<<<<<< HEAD
   validates :single, presence: { if: :single_required?}
   # validates_presence_of :options, if: :is_multi?
   validates_presence_of :option_ids, if: :is_multi?
@@ -23,11 +24,20 @@ class Answer < ApplicationRecord
 
 
 
+=======
+  validates_presence_of :single, if: :single_required?
+  #  validates_presence_of :options, if: :is_multi?
+  validates_presence_of :option_ids, if: :is_multi?
+  validates_associated :multis
+>>>>>>> e7e24e5... wip
 
 
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> e7e24e5... wip
 
   def single_required?
     self.question.required && ! self.question.multi

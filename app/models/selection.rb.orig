@@ -5,4 +5,8 @@ class Selection < ApplicationRecord
   validates :option_id, :uniqueness => {scope: :answer_id}
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> e7e24e5... wip
 end

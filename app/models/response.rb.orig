@@ -1,0 +1,19 @@
+class Response < ApplicationRecord
+  belongs_to :survey
+  has_many :answers, inverse_of: :response
+  has_many :multis, through: :answers, source: :multis
+  has_many :singles, through: :answers, source: :single
+<<<<<<< HEAD
+  accepts_nested_attributes_for :answers
+  validates_associated :answers
+
+
+=======
+  accepts_nested_attributes_for :answers, reject_if: :not_required_and_blank?
+  validates_associated :answers
+
+  def not_required_and_blank?(attr)
+    ! Question.find(attr['question_id']).required && attr['option_id'].blank?
+  end
+>>>>>>> 7e37115... Save wip
+end

@@ -1,7 +1,7 @@
 class Option < ApplicationRecord
   belongs_to :question, inverse_of: :options
   has_one :survey, through: :question
-  has_many :selections
+  has_many :selections, inverse_of: :option
   has_many :answers, through: :selections
   validates :value, presence: true, if: :last_step?
 
