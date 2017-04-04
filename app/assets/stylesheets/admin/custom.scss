@@ -1,7 +1,9 @@
 .container {
-  max-width: 800px;
+  max-width: 600px;
+  margin-bottom:4em;
+
 }
-.builder-title, .taker-title {
+.page-title {
   border-bottom: 1px solid #e5e5e5;
   text-align: center;
   padding-bottom: .2em;
@@ -18,11 +20,16 @@
     border-right: 1px solid #e5e5e5;
   }
 }
+.list.alpha {
+  li {
+    list-style-type: lower-alpha;
+  }
+}
 .list {
   .item {
     margin-bottom: 1.2em;
     font-weight: bold;
-  }
+}
   .item.required:before {
     content: '*';
     position: relative;

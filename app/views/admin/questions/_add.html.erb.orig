@@ -1,0 +1,22 @@
+<p>Next, add the text for each of your options</p>
+<<<<<<< HEAD
+<div class="form-group <%= form_error_class(question, :title) %>">
+  <%= f.label :title, "What is your question?" %>
+  <%= f.text_field :title, class: 'form-control' %>
+  <%= form_error(question, :title) %>
+</div>
+<%= f.fields_for :options do |ff| %>
+  <div class="form-group <%= form_error_class(question, :'options.value') %>">
+    <%= ff.label :value, "Option #{ff.index + 1}" %>
+    <%= ff.text_field :value, class: 'form-control' %>
+    <%= form_error(question, :'options.value') %>
+  </div>
+=======
+<%= f.label :title, "What is your question?" %>
+<%= f.text_field :title %>
+<%= f.fields_for :options do |ff| %>
+  <%= ff.label :value, "Option" %>
+  <%= ff.text_field :value %>
+  <%= form_error(@question, :'options.value') %>
+>>>>>>> a4295d0... Save work in progress
+<% end %>

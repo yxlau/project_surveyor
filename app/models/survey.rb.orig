@@ -1,8 +1,13 @@
 class Survey < ApplicationRecord
+<<<<<<< HEAD
   has_many :questions, dependent: :destroy
   has_many :options, through: :questions
   has_many :responses, dependent: :destroy
   has_many :answers, through: :responses
   has_many :selections, through: :answers
+=======
+  has_many :questions
+  has_many :options, through: :questions
+>>>>>>> a4295d0... Save work in progress
   validates :title, :description, presence: true
 end

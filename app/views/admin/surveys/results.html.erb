@@ -1,7 +1,5 @@
-survye resuls
-
-<h2 class="h3"><%= @survey.title %></h2>
-<p><%= @survey.description %></p>
+<h1 class="h2 page-title">Survey Results</h1>
+<%= render partial: 'shared/survey_details', locals: {survey: @survey} %>
 <ol class="list">
-  <%= render partial: 'admin/shared/collated_responses',  collection: @survey.questions.includes(:selections), as: :question %>
+  <%= render partial: 'admin/shared/collated_responses',  collection: @survey.questions.includes(:options), as: :question %>
 </ol>

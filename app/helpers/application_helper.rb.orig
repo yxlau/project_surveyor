@@ -12,7 +12,11 @@ module ApplicationHelper
 
   def form_error(resource, field)
     unless resource.errors[field].empty?
+<<<<<<< HEAD
       html = '<span class="text-danger"><i>' + resource.errors[field].first.capitalize + '</i></span>'
+=======
+      html = '<span class="text-danger">' + resource.errors[field].first.capitalize + '</span>'
+>>>>>>> a4295d0... Save work in progress
       html.html_safe
     end
   end
@@ -21,4 +25,9 @@ module ApplicationHelper
     'has-error' unless resource.errors[field].empty?
   end
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a4295d0... Save work in progress
 end

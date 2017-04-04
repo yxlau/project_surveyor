@@ -16,7 +16,7 @@
         <%= form_error(response, :'answers.single') if question.required %>
         <%= ff.fields_for :single, response.answers.build.build_single do |s| %>
           <%= s.collection_radio_buttons(:option_id, question.options.collect, :id, :value) do |r| %>
-            <div class="radio <%= form_error_class(response, :'answers.single') if question.required %>">
+            <div class="radio">
               <label>
                 <%= r.radio_button %>
                 <%= r.text %>

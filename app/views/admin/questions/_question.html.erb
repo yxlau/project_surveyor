@@ -4,7 +4,7 @@
     <p><i><%= "Required.".html_safe if question.required %>
         <%= " Select one" unless question.multi %></i>
     </p>
-    <ol>
+    <ol class="list alpha">
       <%= render partial: 'admin/options/option', collection: question.options, as: :option  %>
     </ol>
     <p><%= link_to "Remove question", [:admin, question.survey, question], method: :delete, data: {confirm: 'Are you sure you want to remove this question?'} %></p>

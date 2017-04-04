@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
   belongs_to :response, inverse_of: :answers
   belongs_to :question
 
-  has_many :selections
+  has_many :selections, inverse_of: :answer, dependent: :destroy
 
   has_one :single, class_name: 'Selection', foreign_key: :answer_id, inverse_of: :answer, dependent: :destroy
 
@@ -13,9 +13,8 @@ class Answer < ApplicationRecord
 
   accepts_nested_attributes_for :single, reject_if: :all_blank
 
-  before_save :mark_for_destroy
+  # before_save :mark_for_destroy
 
-<<<<<<< HEAD
   validates :single, presence: { if: :single_required?}
   # validates_presence_of :options, if: :is_multi?
   validates_presence_of :option_ids, if: :is_multi?
@@ -24,12 +23,7 @@ class Answer < ApplicationRecord
 
 
 
-=======
-  validates_presence_of :single, if: :single_required?
-  #  validates_presence_of :options, if: :is_multi?
-  validates_presence_of :option_ids, if: :is_multi?
-  validates_associated :multis
->>>>>>> e7e24e5... wip
+
 
 
 
@@ -37,7 +31,17 @@ class Answer < ApplicationRecord
 <<<<<<< HEAD
 =======
 
->>>>>>> e7e24e5... wip
+  def mark_for_destroy
+    # if question is NOT required
+    unless self.question.required
+      if self.question.multi
+        self.mark_for_destruction if self.options.blank?
+      else
+        self.mark_for_destruction if self.single.nil?
+      end
+    end
+  end
+>>>>>>> bdb0c18... Add seed for survey taker
 
   def single_required?
     self.question.required && ! self.question.multi

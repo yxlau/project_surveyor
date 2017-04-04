@@ -1,0 +1,105 @@
+class Admin::QuestionsController < ApplicationController
+<<<<<<< HEAD
+
+  def new
+    session[:question_params] ||= {}
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.build(session[:question_params])
+=======
+  # def build
+  #   @survey = Survey.find(params[:survey_id])
+  #   @question = @survey.questions.build
+  # end
+  def new
+    session[:question_params] ||= {}
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.build
+>>>>>>> a4295d0... Save work in progress
+    @question.current_step = session[:form_step]
+  end
+
+  def create
+<<<<<<< HEAD
+    merge_params
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.build(question_params)
+    @question.current_step = session[:form_step]
+    @question.option_count.times { @question.options.build } if @question.options.empty? && @question.option_count
+
+    if params[:back]
+      session[:question_params].delete('options_attributes')
+      @question.current_step = @question.back
+    elsif @question.valid?
+      if @question.last_step?
+        @question.save if @question.all_valid?
+      else
+        @question.current_step = @question.next_step
+      end
+    elsif !@question.valid?
+      flash[:error] = "Alert, alert! Better take another look at that form."
+    end
+
+    session[:form_step] = @question.current_step
+
+    if @question.new_record?
+
+      render :new
+    else
+      session[:form_step] = session[:question_params] = nil
+      flash[:success] = "Success! A question is born."
+      redirect_to [:admin, @survey]
+    end
+
+  end
+
+  def destroy
+    @question = Question.find(params[:id])
+    if @question.destroy
+      flash[:success] = "Success! Your question has been removed. Pew pew pew!"
+    else
+      flash[:error] = "Sorry! That question is indestructible."
+    end
+    redirect_to [:admin, @question.survey]
+=======
+    session[:question_params].deep_merge!(params[:question]) if params[:question]
+
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.build(session[:question_params])
+    @question.current_step = session[:form_step]
+    @question.options.build
+    # TO DO: validate first! otherwise, it will just reproduce more fields
+    if @question.first_step?
+      @question.current_step = @question.next_step if @question.valid?
+    elsif params[:back]
+      @question.current_step = @question.back
+    elsif @question.last_step? && @question.all_valid?
+      if @question.save
+        session[:question_params] = session[:form_step] = nil
+        flash[:success] = "Saved!"
+        redirect_to [:admin, @survey, @question]
+      else
+        flash[:error] = "Ooops!"
+      end
+    end
+    session[:form_step] = @question.current_step
+    render :new if @question.new_record?
+
+>>>>>>> a4295d0... Save work in progress
+  end
+
+  private
+  def question_params
+<<<<<<< HEAD
+    params.require(:question).permit(:option_count, :multi, :title, :required, {options_attributes: [:id, :value, :question_id]})
+  end
+
+  def merge_params
+    session[:question_params].deep_merge!(params[:question]) if params[:question]
+    params[:question] = ActionController::Parameters.new(session[:question_params]).merge(params[:question])
+=======
+    params.require(:question).permit(:option_count, :multi, :title, :required, options_attributes: [:id, :value, :question_id])
+>>>>>>> a4295d0... Save work in progress
+  end
+
+
+end

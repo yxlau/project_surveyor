@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= render partial: 'admin/shared/survey_builder_header', locals: {survey: @survey } %>
 <%= render partial: 'admin/shared/survey_details', locals: {survey: @survey} %>
 <h3 class="h4">Add A Question:</h3>
@@ -14,3 +15,19 @@
   <%= render partial: 'admin/questions/question', collection: @questions.includes(:options) %>
 </ol>
 <%= link_to "Finish Building Survey and Return", [:admin, :surveys], class: 'btn btn-block btn-primary' %>
+=======
+<h1>Survey Builder (header)</h1>
+(survey info)
+
+<h2 class="h4">Title</h2>
+<%= @survey.title %>
+<h2 class="h4">Description:</h2>
+<%= @survey.description %>
+<hr>
+<h3 class="h4">Add A Question</h3>
+<p>Choose which type of question to add.</p>
+<%= form_tag [:questiontype, :admin, @survey] do %>
+  <%= select_tag "qtype", options_for_select({"Multiple Choice Question": "Option", "Number Range": "num"}, "Option") %>
+  <%= submit_tag "Add a New Question" %>
+<% end %>
+>>>>>>> a4295d0... Save work in progress

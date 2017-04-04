@@ -47,9 +47,12 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
+<<<<<<< HEAD
     bullet (5.5.1)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
+=======
+>>>>>>> a4295d0... Save work in progress
     byebug (9.0.6)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -66,8 +69,11 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+<<<<<<< HEAD
     faker (1.6.6)
       i18n (~> 0.5)
+=======
+>>>>>>> a4295d0... Save work in progress
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -191,7 +197,10 @@ GEM
     uglifier (3.1.11)
       execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
+<<<<<<< HEAD
     uniform_notifier (1.10.0)
+=======
+>>>>>>> a4295d0... Save work in progress
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -208,10 +217,15 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+<<<<<<< HEAD
   bullet
   byebug
   coffee-rails (~> 4.2)
   faker
+=======
+  byebug
+  coffee-rails (~> 4.2)
+>>>>>>> a4295d0... Save work in progress
   jazz_fingers
   jbuilder (~> 2.5)
   jquery-rails
@@ -229,4 +243,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.6
+   1.14.4

@@ -1,12 +1,21 @@
 class Option < ApplicationRecord
   belongs_to :question, inverse_of: :options
   has_one :survey, through: :question
+<<<<<<< HEAD
   has_many :selections, dependent: :nullify
   has_many :answers, through: :selections
-
+=======
+>>>>>>> a4295d0... Save work in progress
   validates :value, presence: true, if: :last_step?
 
   def last_step?
     self.question.last_step?
   end
 end
+<<<<<<< HEAD
+=======
+
+# 1.  new/ populate form. go to next step (submit to #create)
+# 2. if form is invalid, re-render new with values from invalid form
+# 3. if form is valid, render next step 'add'
+>>>>>>> a4295d0... Save work in progress
