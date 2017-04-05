@@ -9,7 +9,7 @@
 Survey.destroy_all
 Question.destroy_all
 Option.destroy_all
-Response.destroy_all
+Answer.destroy_all
 
 puts "Seeding surveys..."
 2.times do

@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20170402100000) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: :cascade do |t|
     t.integer  "response_id"
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["response_id"], name: "index_answers_on_response_id"
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+    t.index ["response_id"], name: "index_answers_on_response_id", using: :btree
   end
 
   create_table "options", force: :cascade do |t|
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170402100000) do
     t.integer  "selections_count", default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.index ["question_id"], name: "index_options_on_question_id"
+    t.index ["question_id"], name: "index_options_on_question_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -38,14 +41,14 @@ ActiveRecord::Schema.define(version: 20170402100000) do
     t.boolean  "multi"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["survey_id"], name: "index_questions_on_survey_id"
+    t.index ["survey_id"], name: "index_questions_on_survey_id", using: :btree
   end
 
   create_table "responses", force: :cascade do |t|
     t.integer  "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_responses_on_survey_id"
+    t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   end
 
   create_table "selections", force: :cascade do |t|
@@ -53,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170402100000) do
     t.integer  "option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answer_id"], name: "index_selections_on_answer_id"
-    t.index ["option_id"], name: "index_selections_on_option_id"
+    t.index ["answer_id"], name: "index_selections_on_answer_id", using: :btree
+    t.index ["option_id"], name: "index_selections_on_option_id", using: :btree
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -65,4 +68,11 @@ ActiveRecord::Schema.define(version: 20170402100000) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "responses"
+  add_foreign_key "options", "questions"
+  add_foreign_key "questions", "surveys"
+  add_foreign_key "responses", "surveys"
+  add_foreign_key "selections", "answers"
+  add_foreign_key "selections", "options"
 end
